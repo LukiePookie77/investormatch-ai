@@ -578,3 +578,66 @@ body.dock-open #content{padding-bottom:130px}
   .opt-grid.cols-2,.opt-grid.cols-3,.opt-grid.cols-4{grid-template-columns:1fr}
   .brand-name{display:none}
 }
+
+/* ============================================================
+   LIGHT THEME  (html[data-theme="light"])
+   Flips the design tokens to a light palette with dark, readable
+   text, then patches the handful of surfaces that hardcode dark
+   colors or white glass overlays. Accents are deepened so they
+   stay legible on white.
+   ============================================================ */
+:root[data-theme="light"]{
+  --bg:#eef1f7;
+  --bg-2:#e5eaf3;
+  --panel:#ffffff;
+  --panel-2:#f4f7fc;
+  --panel-hover:#e9eef8;
+  --border:#cbd5e6;
+  --border-soft:#dde4f0;
+  --text:#0d1626;        /* near-black — the readable body text */
+  --text-dim:#41506b;
+  --text-faint:#6b7589;
+  --accent:#0d9488;      /* deeper teal for contrast on white */
+  --accent-2:#2563eb;
+  --accent-3:#7c3aed;
+  --pos:#0f9d58;
+  --neg:#dc2626;
+  --warn:#b45309;
+  --gold:#a9760a;
+  --shadow:0 10px 30px rgba(20,40,80,.14);
+}
+:root[data-theme="light"] body{color:var(--text)}
+
+/* Top bar / banner / chrome that hardcoded dark values */
+[data-theme="light"] #topbar{background:rgba(255,255,255,.82)}
+[data-theme="light"] #disclaimer-banner{color:#8a5300}
+[data-theme="light"] .hero h1{background:linear-gradient(120deg,var(--text),var(--accent));-webkit-background-clip:text;background-clip:text}
+
+/* Frosted-glass surfaces: white overlays -> subtle dark tints on light bg */
+[data-theme="light"] .glass{
+  background:rgba(255,255,255,.7);border-color:rgba(15,30,60,.10);
+  box-shadow:0 8px 30px rgba(20,40,80,.10),inset 0 1px 0 rgba(255,255,255,.7);
+}
+[data-theme="light"] .ml-row:hover,
+[data-theme="light"] .tl-tf:hover{background:rgba(15,30,60,.06)}
+[data-theme="light"] .ws-layer{background:rgba(15,30,60,.04);border-color:rgba(15,30,60,.10)}
+[data-theme="light"] .ws-dropzone{border-color:rgba(15,30,60,.22)!important}
+
+/* Timeline chart surfaces */
+[data-theme="light"] .tl-chart{background:linear-gradient(180deg,#f7f9fd,#eef2f9)}
+[data-theme="light"] .tl-cross{background:rgba(13,22,38,.45)}
+[data-theme="light"] .tl-tip{background:rgba(255,255,255,.96)}
+
+/* Strategy dock + overlay glass cards */
+[data-theme="light"] #strategy-dock{background:rgba(255,255,255,.78);border-top-color:rgba(15,30,60,.12)}
+[data-theme="light"] .dock-card{color:#06303a}
+[data-theme="light"] .ov-panel{
+  background:rgba(255,255,255,.94);border-color:rgba(15,30,60,.12);
+  box-shadow:0 24px 70px rgba(20,40,80,.25),inset 0 1px 0 #fff;
+}
+[data-theme="light"] .ov-col,
+[data-theme="light"] .ov-compare,
+[data-theme="light"] .ov-setup div{background:rgba(15,30,60,.04);border-color:rgba(15,30,60,.10)}
+
+/* Hover state that forced white text on a light chip */
+[data-theme="light"] .learn-featured .chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}

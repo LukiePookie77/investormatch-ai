@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>InvestorMatch AI — Your Personal AI Hedge Fund Analyst</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <!-- Set theme before first paint (avoids a flash). Saved choice wins; else follow the OS setting. -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("im-theme");
+        var t = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = "dark"; }
+    })();
+  </script>
 </head>
 <body>
   <!-- ============ APP SHELL ============ -->
@@ -26,6 +36,7 @@
         <button class="nav-btn" data-view="profile">Investor DNA</button>
       </nav>
       <div class="topbar-right">
+        <button id="theme-toggle" class="ghost-btn" title="Toggle light/dark mode">☀ Light</button>
         <button id="chat-toggle" class="ghost-btn hidden" title="AI Assistant">💬 Assistant</button>
         <button id="retake-btn" class="ghost-btn hidden" title="Retake assessment">↻ Reassess</button>
       </div>
@@ -82,5 +93,25 @@
   <script src="js/chat.js"></script>
   <script src="js/survey.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- Light/dark toggle: flips data-theme on <html> and remembers the choice. -->
+  <script>
+    (function () {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      function refresh() {
+        var light = document.documentElement.dataset.theme === "light";
+        btn.textContent = light ? "🌙 Dark" : "☀ Light";
+        btn.title = light ? "Switch to dark mode" : "Switch to light mode";
+      }
+      refresh();
+      btn.addEventListener("click", function () {
+        var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("im-theme", next); } catch (e) {}
+        refresh();
+      });
+    })();
+  </script>
 </body>
 </html>
