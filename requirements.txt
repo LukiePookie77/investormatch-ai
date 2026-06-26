@@ -1,0 +1,2 @@
+# InvestorMatch AI uses the Python standard library only — no third-party packages.
+# This file exists so Render detects a Python service and runs the build step.

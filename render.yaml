@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: investormatch-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      # RENDER is set automatically by Render; declared here so server.py binds 0.0.0.0.
+      - key: RENDER
+        value: "true"
+      # Optional: paste a Finnhub key in the Render dashboard for live Finnhub quotes.
+      # - key: FINNHUB_API_KEY
+      #   sync: false

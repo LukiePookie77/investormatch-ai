@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InvestorMatch AI — Your Personal AI Hedge Fund Analyst</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ============ APP SHELL ============ -->
+  <div id="app">
+
+    <!-- Top bar -->
+    <header id="topbar">
+      <div class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">InvestorMatch<span class="accent"> AI</span></span>
+      </div>
+      <nav id="mainnav" class="hidden">
+        <button class="nav-btn active" data-view="dashboard">Discover</button>
+        <button class="nav-btn" data-view="scanner">Scanner</button>
+        <button class="nav-btn" data-view="builder">Builder</button>
+        <button class="nav-btn" data-view="learn">Learn</button>
+        <button class="nav-btn" data-view="watchlist">Watchlist</button>
+        <button class="nav-btn" data-view="portfolio">Portfolio</button>
+        <button class="nav-btn" data-view="profile">Investor DNA</button>
+      </nav>
+      <div class="topbar-right">
+        <button id="chat-toggle" class="ghost-btn hidden" title="AI Assistant">💬 Assistant</button>
+        <button id="retake-btn" class="ghost-btn hidden" title="Retake assessment">↻ Reassess</button>
+      </div>
+    </header>
+
+    <!-- Risk disclaimer banner -->
+    <div id="disclaimer-banner" class="hidden">
+      ⚠️ <strong>Educational use only.</strong> InvestorMatch AI provides informational analysis, not financial advice.
+      No outcome is guaranteed. All figures are illustrative model estimates. <a href="#" id="disclaimer-more">Details</a>
+    </div>
+
+    <!-- Main content area (views render here) -->
+    <main id="content"></main>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <span>InvestorMatch AI · Educational demonstration · Not investment advice · No guarantee of returns</span>
+    </footer>
+  </div>
+
+  <!-- ============ AI CHAT DRAWER ============ -->
+  <aside id="chat-drawer" class="hidden">
+    <div class="chat-header">
+      <span>🤖 AI Analyst</span>
+      <button id="chat-close" class="ghost-btn">✕</button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-suggestions" id="chat-suggestions"></div>
+    <form id="chat-form" class="chat-form">
+      <input id="chat-input" type="text" placeholder="Ask about your matches…" autocomplete="off" />
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
+  <!-- ============ STRATEGY OVERLAY ANALYSIS ============ -->
+  <div id="strategy-dock" class="hidden"></div>
+  <div id="overlay-root" class="hidden"></div>
+
+  <!-- ============ MODAL ROOT ============ -->
+  <div id="modal-root" class="hidden">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-panel" id="modal-panel"></div>
+  </div>
+
+  <!-- Scripts (load order matters: data -> engine -> generators -> app) -->
+  <script src="js/data.js"></script>
+  <script src="js/methods.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/memo.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/strategy.js"></script>
+  <script src="js/learn.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/survey.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
